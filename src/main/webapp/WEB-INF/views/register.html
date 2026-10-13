@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Task Manager - Registration</title>
+    <link rel="stylesheet" th:href="@{/css/auth.css}">
+</head>
+
+<body>
+
+<div class="auth-container">
+
+    <div class="auth-card">
+
+        <h1>Task Manager</h1>
+
+        <h2>Create Account</h2>
+
+        <p class="auth-subtitle">
+            Create an account to manage your tasks
+        </p>
+
+        <form th:action="@{/users/register}"
+              th:object="${user}"
+              method="post">
+
+            <div class="form-group">
+
+                <label for="username">
+                    Username:
+                </label>
+
+                <input type="text"
+                       id="username"
+                       th:field="*{username}"
+                       th:classappend="${#fields.hasErrors('username')} ? ' error' : ''"
+                       placeholder="Enter username">
+
+                <div class="error-message"
+                     th:if="${#fields.hasErrors('username')}"
+                     th:errors="*{username}">
+                </div>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="password">
+                    Password:
+                </label>
+
+                <input type="password"
+                       id="password"
+                       th:field="*{password}"
+                       th:classappend="${#fields.hasErrors('password')} ? ' error' : ''"
+                       placeholder="Enter password">
+
+                <div class="error-message"
+                     th:if="${#fields.hasErrors('password')}"
+                     th:errors="*{password}">
+                </div>
+
+            </div>
+
+
+            <button type="submit"
+                    class="auth-button">
+                Register
+            </button>
+
+        </form>
+
+
+        <p class="auth-footer">
+            Already have an account?
+            <a th:href="@{/users/login}">
+                Login
+            </a>
+        </p>
+
+    </div>
+
+</div>
+
+</body>
+</html>
